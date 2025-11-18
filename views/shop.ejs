@@ -1,0 +1,66 @@
+<%- include('./partials/header') %>
+<% if(success && success.length > 0) { %>
+  <div class="fixed top-5 left-1/2 transform -translate-x-1/2 
+              bg-green-500 text-white px-6 py-3 
+              rounded-lg shadow-lg z-50 w-auto max-w-xs text-center animate-fade">
+    <%= success %>
+  </div>
+<% } %>
+  
+    <div class="w-full h-screen flex items-start px-20 py-20">
+        <div class="w-[25%] flex h-screen flex-col items-start">
+            <div class="flex items-center gap-2">
+                <h3>sort by</h3>
+                <form action="/shop">
+                    <select class="border-[1px] px-2 py-1" name="sortby" id="">
+                        <option value="popular">Popular</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </form>
+            </div>
+            <div class="flex flex-col mt-20">
+                <a class="block w-fit mb-2" href="">New Collection</a>
+                <a class="block w-fit mb-2" href="">All Products</a>
+                <a class="block w-fit mb-2" href="">Discounted Products</a>
+            </div>
+            <div class="mt-32">
+                <a class="block w-fit mb-2" href="">Filter by :</a>
+                <a class="block w-fit mb-2" href="">Availability</a>
+                <a class="block w-fit mb-2" href="">Discount</a>
+            </div>
+        </div>
+        <div class="grid  grid-col sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+          <% products.forEach(product => { %>
+            <div class="rounded-xl shadow hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col  bg-white w-full">
+              
+              <!-- Top Section (fixed height) -->
+              <div class="flex items-center justify-center bg-[<%= product.bgcolor %>] h-56 w-56 pr-5">
+                <img 
+                  class="h-40 w-auto object-contain "
+                  src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                  alt="<%= product.name %>">
+              </div>
+        
+              <!-- Bottom Section (fixed height) -->
+              <div class="flex justify-between items-center px-4 py-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>] h-24">
+                  <div>
+                  <h3 class="font-semibold text-base leading-tight"><%= product.name %></h3>
+                  <h4 class="text-sm font-bold mt-1">₹ <%= product.price %></h4>
+                  <h4 class="text-sm font-bold mt-1">₹ <%= product.discount %></h4>
+                </div>
+                <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white hover:bg-gray-200 transition" href="/addtocart/<%=product._id%>">
+                  <i class="ri-add-line text-black"></i>
+                </a>
+              </div>
+        
+            </div>
+          <% }) %>
+        </div>
+        
+        
+        
+        
+          
+     
+    </div>
+    <%- include('./partials/footer') %>

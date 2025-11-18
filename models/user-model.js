@@ -5,24 +5,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         minleangth: 3,
         trim: true,
-        required: true
+        
     },
     email: {
         type: String,
-        required: true,
+        
         trim: true,
-        unique: true
+        
     },
     password:{
         type: String,
-        required: true,
+        
         trim: true,
-        minleangth: 6
+        
     },
-    cart : {
-        type: Array,
-        default: []
-    },
+    cart : [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        }
+    ],
     isadmin : Boolean,
     orders : {
         type: Array,

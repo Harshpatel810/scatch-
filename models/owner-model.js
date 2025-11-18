@@ -4,18 +4,18 @@ const ownerSchema = new mongoose.Schema({
     fullname:{
         type: String,
         minleangth: 3,
-        trim: true,
-        required: true
+        trim: true
+        
     },
     email: {
         type: String,
-        required: true,
+        
         trim: true,
-        unique: true
+        
     },
     password:{
         type: String,
-        required: true,
+        
         trim: true,
         minleangth: 6
     },
